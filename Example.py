@@ -1,4 +1,5 @@
 # encoding = utf-8
+# http://www.omegaxyz.com/2018/04/19/2nn_tensorflow_py/
 def add_layer(inputs,in_size,out_size,activation_function=None):
 	weigths = tf.Variable(tf.random_normal([in_size,out_size]))
 	biases = tf.Variable(tf.zeros([1,out_size] + 0.1))
@@ -31,7 +32,7 @@ l1 = add_layer(xs,1,10,activation_function = tf.nn.relu)
 prediction = add_layer(l1,10,1,activation_function = None)
 # 由此生成了两层神经网络
 # 计算误差，并用梯度下降使得误差最小
-loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys-prediction),reduction_indices=[-1]))
+loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys-prediction),reduction_indices=[1]))
 
 train_step = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
 # import step
